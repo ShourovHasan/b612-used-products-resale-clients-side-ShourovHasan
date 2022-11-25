@@ -69,10 +69,11 @@ const Register = () => {
             .then(data => {
                 if (data.message) {
                     setCreatedUserEmail(email);
-                    return toast.error(data.message);
+                    toast.error(data.message);
+                    return toast.success('User Login Successfully');
                 }
                 setCreatedUserEmail(email);
-                toast.success('User created Successfully');
+                toast.success('User Created Successfully');
                 // getUserToken(email)
                 // console.log('Save user', data);
             })
