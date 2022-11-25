@@ -7,6 +7,7 @@ const DisplayError = () => {
     const error = useRouteError();
     const navigate = useNavigate();
 
+    
     const handleLogOut = () => {
         LogOut()
             .then(() => {
