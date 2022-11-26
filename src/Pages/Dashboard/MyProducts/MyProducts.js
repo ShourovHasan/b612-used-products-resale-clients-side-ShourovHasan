@@ -24,6 +24,23 @@ const MyProducts = () => {
             return data;
         }
     })
+    const handleMakeAdvertise = (id) => {
+        fetch(`http://localhost:5000/products/seller/${id}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.matchedCount > 0) {
+                    toast.success('Make advertised successful.');
+                    refetch();
+                }
+                console.log(data);
+            })
+            .catch(err => console.error(err.message))
+    }
     
     
     return (
