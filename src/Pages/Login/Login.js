@@ -72,6 +72,11 @@ const Login = () => {
         })
             .then(res => res.json())
             .then(data => {
+                if (data.message) {
+                    setLoginUserEmail(email);
+                    // toast.error(data.message);
+                    return toast.success('User Login Successfully');
+                }
                 setLoginUserEmail(email);
                 toast.success('Login Successful');
                 // navigate(from, { replace: true });

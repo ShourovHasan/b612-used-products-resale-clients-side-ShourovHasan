@@ -6,7 +6,6 @@ const DisplayError = () => {
     const { LogOut } = useContext(AuthContext);
     const error = useRouteError();
     const navigate = useNavigate();
-
     
     const handleLogOut = () => {
         LogOut()

@@ -140,7 +140,7 @@ const Register = () => {
                             <option>seller</option>
                         </select>
                     </div>
-                    <input type="submit" className='w-full pb-0 mt-5 mb-0 text-accent btn' value='Sign Up' />
+                    <input type="submit" className='w-full pb-0 mt-5 mb-0 text-accent btn' defaultValue='Sign Up' />
                     <div>
                         {
                             signUpError &&
