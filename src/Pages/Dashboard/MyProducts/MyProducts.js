@@ -59,6 +59,9 @@ const MyProducts = () => {
             })
     }
     
+    if (isLoading) {
+        return <Loading></Loading>
+    }
     return (
         <div>
             <h2 className="mb-4 text-3xl">My Products</h2>
