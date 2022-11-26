@@ -118,7 +118,16 @@ const MyProducts = () => {
                         </div>
                 }
             </div>
-            
+            {
+                deletingProduct && <DeleteConfirmationModal
+                    deleteTitle={`Are you sure? you want to delete?`}
+                    message={`If you delete ${deletingProduct.productName}. It cannot get the Product back.`}
+                    successAction={handleDeleteProduct}
+                    modalData={deletingProduct}
+                    closeModal={closeModal}
+                    successButtonName='Delete'
+                ></DeleteConfirmationModal>
+            }
         </div>
     );
 };
