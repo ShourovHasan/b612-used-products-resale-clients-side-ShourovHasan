@@ -41,7 +41,23 @@ const MyProducts = () => {
             })
             .catch(err => console.error(err.message))
     }
-    
+    const handleDeleteProduct = (product) => {
+        // console.log(product);
+        fetch(`http://localhost:5000/products/${product?._id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    toast.success(`Product ${product.productName} is deleted successfully`)
+                    refetch();
+                }
+            })
+    }
     
     return (
         <div>
