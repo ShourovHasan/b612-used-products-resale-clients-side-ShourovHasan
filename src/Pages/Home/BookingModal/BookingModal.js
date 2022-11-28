@@ -1,15 +1,22 @@
 import { format } from 'date-fns';
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const BookingModal = ({ booking, setBooking, refetch }) => {
     const { user } = useContext(AuthContext);
     const { _id, productName, productPicture, resalePrice, sellerName, sellerPhoneNumber, sellerEmail } = booking;
     const date = format(new Date(), "PPpp");
+    const navigate = useNavigate();
     // console.log('booking',booking.booking);
     const handleBooking = event => {
         event.preventDefault();
+        
+        if (!user?.email) {
+            toast.error('Please Login first for make booking.');
+            return navigate('/login');
+        }
         const form = event.target;
 
         const buyerPhone = form.buyerPhone.value;
@@ -71,7 +78,7 @@ const BookingModal = ({ booking, setBooking, refetch }) => {
 
                         <input name='buyerMeetingLocation' type="text" placeholder="meeting location" className="w-full shadow-sm input input-bordered shadow-neutral" required />
 
-                        <input type="submit" className='w-full mt-3 btn bg-gradient-to-r from-secondary to-primary text-white' defaultValue="Submit" />
+                        <input type="submit" className='w-full mt-3 text-white btn bg-gradient-to-r from-secondary to-primary' defaultValue="Submit" />
                     </form>
                 </div>
             </div>

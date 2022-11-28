@@ -101,10 +101,10 @@ const ProductsCard = ({ product, setBooking }) => {
                             </li>
                         </ul>
                         <div className="justify-center card-actions">
-                            <button onClick={() => handleReport(product)} className="border-none shadow-sm shadow-neutral text-white btn bg-gradient-to-r from-secondary to-primary btn-sm">Report to Admin</button>
+                            <button onClick={() => handleReport(product)} className="text-white border-none shadow-sm shadow-neutral btn bg-gradient-to-r from-secondary to-primary btn-sm">Report to Admin</button>
                         </div>
                         <div className="justify-center card-actions">
-                            <label onClick={() => setBooking(product)} htmlFor="booking-modal" className="w-full border-none shadow-sm shadow-neutral text-white btn bg-gradient-to-r from-secondary to-primary">Book Now</label>
+                            <label onClick={() => setBooking(product)} htmlFor="booking-modal" className="w-full text-white border-none shadow-sm shadow-neutral btn bg-gradient-to-r from-secondary to-primary">Book Now</label>
                         </div>
                     </div>
                 </div>
