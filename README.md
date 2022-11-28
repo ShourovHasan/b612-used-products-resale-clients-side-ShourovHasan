@@ -4,6 +4,7 @@
 * adminEmail: shourov@gmail.com
 * adminPassword: Shourov33@
 
+For more details
 * sellerEmail: tom@gmail.com
 * sellerPassword: Tom33@
 
