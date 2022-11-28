@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import useTitle from '../../../hooks/useTitle';
 
 const AddCategory = () => {
     const { user } = useContext(AuthContext);
@@ -10,6 +11,7 @@ const AddCategory = () => {
     const imageHostKey = process.env.REACT_APP_imgbb_key;
     // console.log(imageHostKey);
     const navigate = useNavigate();
+    useTitle('Add Categories');
 
     const handleAddCategory = data => {
         const image = data.categoryPicture[0];
@@ -25,7 +27,7 @@ const AddCategory = () => {
             .then(imgData => {
                 if (imgData.success) {
                     console.log(imgData.data.url);
-                    const category = {                        
+                    const category = {
                         categoryName: data.categoryName,
                         categoryDescription: data.categoryDescription,
                         categoryPicture: imgData.data.url,
@@ -33,7 +35,7 @@ const AddCategory = () => {
                         userEmail: user.email,
                     }
                     // Save doctor information to the database
-                    fetch('http://localhost:5000/categories', {
+                    fetch('https://b612-used-products-resale-server-side-shourovhasan.vercel.app/categories', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
@@ -86,7 +88,7 @@ const AddCategory = () => {
                     })} type="file" placeholder="Upload Category Picture" className="w-full file-input file-input-bordered" />
                     {errors.categoryPicture && <p className='ml-4 text-red-500'>{errors.categoryPicture.message}</p>}
                 </div>
-                <input type="submit" className='w-full pb-0 mt-5 mb-0 btn bg-gradient-to-r from-secondary to-primary text-white' value='Add Category' />
+                <input type="submit" className='w-full pb-0 mt-5 mb-0 text-white btn bg-gradient-to-r from-secondary to-primary' value='Add Category' />
             </form>
         </div>
     );

@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import useTitle from '../../../hooks/useTitle';
 import Loading from '../../SharedPages/Loading/Loading';
 
 const AddProduct = () => {
@@ -15,11 +16,12 @@ const AddProduct = () => {
     // console.log(imageHostKey);
     const date = format(new Date(), "PPpp");
     // console.log(date);
+    useTitle('Add Products');
 
     const { data: categories, isLoading } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/categories')
+            const res = await fetch('https://b612-used-products-resale-server-side-shourovhasan.vercel.app/categories')
             const data = await res.json();
             return data;
         }
@@ -55,11 +57,11 @@ const AddProduct = () => {
                         categoryId: form.categoryId.value,
                         productDescription: data.productDescription,
                         productPicture: imgData.data.url,
-                        
+
                     }
                     console.log(product);
                     // Save product information to the database
-                    fetch('http://localhost:5000/products', {
+                    fetch('https://b612-used-products-resale-server-side-shourovhasan.vercel.app/products', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
@@ -188,7 +190,7 @@ const AddProduct = () => {
                             required: "product picture is required"
                         })} type="file" placeholder="Upload Your product picture" className="w-full file-input file-input-bordered" />
                         {errors.productPicture && <p className='ml-4 text-red-500'>{errors.productPicture.message}</p>}
-                    </div>                    
+                    </div>
                 </div>
                 <div className="w-full form-control">
                     <label className="label">
@@ -199,7 +201,7 @@ const AddProduct = () => {
                     })} type="text" placeholder="product description" className="w-full h-20 input input-bordered" />
                     {errors.productDescription && <p role="alert" className='ml-4 text-red-600'>{errors.productDescription?.message}</p>}
                 </div>
-                <input type="submit" className='w-full pb-0 mt-5 mb-0 btn bg-gradient-to-r from-secondary to-primary text-white' value='Add Product' />
+                <input type="submit" className='w-full pb-0 mt-5 mb-0 text-white btn bg-gradient-to-r from-secondary to-primary' value='Add Product' />
             </form>
         </div>
     );

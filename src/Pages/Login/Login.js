@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import useToken from '../../hooks/useToken';
 import Lottie from "lottie-react";
 import lottieLogin from '../../../src/asssets/login_register.json';
+import useTitle from '../../hooks/useTitle';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -14,10 +15,12 @@ const Login = () => {
     const [loginUserEmail, setLoginUserEmail] = useState('');
     const [token] = useToken(loginUserEmail);
 
+    useTitle('Login');
+
     let navigate = useNavigate();
     let location = useLocation();
     let from = location.state?.from?.pathname || "/";
-    
+
     // sign in with email and password 
     const handleLogin = data => {
         const { email, password } = data;
@@ -50,8 +53,8 @@ const Login = () => {
                 // console.log(user);
                 const userType = {
                     userType: 'buyer'
-                }                
-                saveUser(user.displayName, user.email, userType.userType)                
+                }
+                saveUser(user.displayName, user.email, userType.userType)
             })
             .catch(error => {
                 // console.error(error.message);
@@ -61,7 +64,7 @@ const Login = () => {
     const saveUser = (displayName, email, userType) => {
         const user = { displayName, email, userType };
         // console.log(user);
-        fetch('http://localhost:5000/users', {
+        fetch('https://b612-used-products-resale-server-side-shourovhasan.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -86,7 +89,7 @@ const Login = () => {
         navigate(from, { replace: true });
     }
     return (
-        <div className="my-5 hero h-[800px]">
+        <div className="mb-5 hero h-[800px]">
             <div className="flex-col gap-20 hero-content lg:flex-row">
                 <div className="w-1/3 text-center lg:text-left">
                     <Lottie loop={true} animationData={lottieLogin} />

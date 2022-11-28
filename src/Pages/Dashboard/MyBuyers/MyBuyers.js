@@ -1,15 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import useTitle from '../../../hooks/useTitle';
 import Loading from '../../SharedPages/Loading/Loading';
 
 const MyBuyers = () => {
     const { user } = useContext(AuthContext);
 
+    useTitle('My Buyers');
+
     const { data: bookings = [], isLoading } = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/bookings/seller/${user?.email}`, {
+            const res = await fetch(`https://b612-used-products-resale-server-side-shourovhasan.vercel.app/bookings/seller/${user?.email}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 },
@@ -25,7 +28,7 @@ const MyBuyers = () => {
     return (
         <div>
             <h2 className="mb-4 text-3xl text-center">My Buyers</h2>
-            <div className="overflow-x-auto mx-2">
+            <div className="mx-2 overflow-x-auto">
                 {
                     bookings.length > 0 ?
                         <table className="table w-full">

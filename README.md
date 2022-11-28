@@ -1,70 +1,20 @@
-# Getting Started with Create React App
+* Project Name: Resale Mobile Store
+* Live website link: https://resale-mobile-store.web.app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+* adminEmail: shourov@gmail.com
+* adminPassword: Shourov33@
 
-## Available Scripts
+* sellerEmail: tom@gmail.com
+* sellerPassword: Tom33@
 
-In the project directory, you can run:
+1. About our website: Our online resale mobile store is a great place to buy and sell gently used phones, tablets, computers and accessories. We offer a wide variety of devices from top name brands, and our prices are unbeatable. Whether you're looking for a new phone or tablet, or you're looking to upgrade your current device, our online store is the perfect place to start.
 
-### `npm start`
+2. Here, three types of users are dealt with, customer, seller and admin. In this, the customer can book the product. Can delete the booked product and if desired, purchase the product. If the payment is complete, the product that made the payment will show paid. And if he wants, after paying, he can delete it and it will be deleted from the payment. And at the time of booking, if there is a problem with any product, then admin can report it.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+3. Let's discuss the accesses of a seller in the second. Seller can add any category, if not on the website. You can add products by category. The products that were added, if someone makes a booking, can see the details of that customer. And anyone who has added products, can do advertising if they want to sell any of these products quickly. But if not sold then available status will show and if advertised then advertising will show. But if it is sold, then instead of showing available, it will show sold and can't advertise status. And if the seller wants, he can delete any product.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+4. And some features have also been added with the role of admin as the last user. You can see all the customers and sellers on the admin dashboard and you can make anyone an admin if you want. A seller can make a verified sale and if a customer reports, on the item. In that case, you can see all the details of the reported item and if you want, you can contact us by email.
 
-### `npm test`
+5. Here some animations are used, lottie is used for that. Also, some more functions and libraries, frameworks are used. For example, Stripe is used for payment. As Api, React Query, React Axios are used. For routing, React router is used. With new Date(), the time is taken along with the date. Functions are also used, along with some more important attributes.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+6. And here on the home page, I used React Slick. On each page visit, dynamic title is given. JWT token is used and user is verified, besides giving access to all places, all activities are done. And used Theme, for Day/Dark mood. In this case, I used daisyui of css tailwind.

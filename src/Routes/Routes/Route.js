@@ -38,7 +38,7 @@ export const router = createBrowserRouter([
             {
                 path: '/category/:id',
                 element: <PrivateRoute><CategoryProducts></CategoryProducts></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
+                loader: ({ params }) => fetch(`https://b612-used-products-resale-server-side-shourovhasan.vercel.app/category/${params.id}`)
             },
             {
                 path: '/login',
@@ -102,7 +102,7 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
+                loader: ({ params }) => fetch(`https://b612-used-products-resale-server-side-shourovhasan.vercel.app/bookings/${params.id}`)
             },
         ]
 

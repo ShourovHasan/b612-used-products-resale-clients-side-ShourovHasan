@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
-const BookingModal = ({booking, setBooking, refetch}) => {
+const BookingModal = ({ booking, setBooking, refetch }) => {
     const { user } = useContext(AuthContext);
     const { _id, productName, productPicture, resalePrice, sellerName, sellerPhoneNumber, sellerEmail } = booking;
     const date = format(new Date(), "PPpp");
@@ -11,7 +11,7 @@ const BookingModal = ({booking, setBooking, refetch}) => {
     const handleBooking = event => {
         event.preventDefault();
         const form = event.target;
-        
+
         const buyerPhone = form.buyerPhone.value;
         const buyerMeetingLocation = form.buyerMeetingLocation.value;
 
@@ -30,7 +30,7 @@ const BookingModal = ({booking, setBooking, refetch}) => {
             bookingTime: date
         }
         // console.log(booking);
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://b612-used-products-resale-server-side-shourovhasan.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -61,16 +61,16 @@ const BookingModal = ({booking, setBooking, refetch}) => {
                     <label htmlFor="booking-modal" className="absolute btn btn-sm btn-circle right-2 top-2">✕</label>
                     <h3 className="text-lg font-bold text-center text-neutral">{productName}</h3>
                     <form onSubmit={handleBooking} className='grid flex-col grid-cols-1 gap-3 mt-3'>
-                        <input type="text" className="w-full shadow-sm input input-bordered shadow-neutral" defaultValue={resalePrice} disabled />   
-                        
+                        <input type="text" className="w-full shadow-sm input input-bordered shadow-neutral" defaultValue={resalePrice} disabled />
+
                         <input name='name' type="text" placeholder="Full Name" className="w-full shadow-sm shadow-neutral input input-bordered" defaultValue={user?.displayName} disabled />
-                        
+
                         <input name='buyerEmail' type="email" placeholder="Email" className="w-full shadow-sm input input-bordered shadow-neutral" defaultValue={user?.email} disabled />
-                        
-                        <input name='buyerPhone' type="text" placeholder="phone Number" className="w-full shadow-sm input input-bordered shadow-neutral" required/>
-                        
-                        <input name='buyerMeetingLocation' type="text" placeholder="meeting location" className="w-full shadow-sm input input-bordered shadow-neutral" required/>
-                        
+
+                        <input name='buyerPhone' type="text" placeholder="phone Number" className="w-full shadow-sm input input-bordered shadow-neutral" required />
+
+                        <input name='buyerMeetingLocation' type="text" placeholder="meeting location" className="w-full shadow-sm input input-bordered shadow-neutral" required />
+
                         <input type="submit" className='w-full mt-3 btn bg-gradient-to-r from-secondary to-primary text-white' defaultValue="Submit" />
                     </form>
                 </div>

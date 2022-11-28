@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
+import useTitle from '../../../hooks/useTitle';
 import DeleteConfirmationModal from '../../SharedPages/DeleteConfirmationModal/DeleteConfirmationModal';
 import Loading from '../../SharedPages/Loading/Loading';
 
@@ -9,7 +10,10 @@ const AllBuyers = () => {
     const closeModal = () => {
         setDeleteBuyer(null);
     }
-    const url = `http://localhost:5000/users/buyers`;
+
+    useTitle('All Buyers');
+
+    const url = `https://b612-used-products-resale-server-side-shourovhasan.vercel.app/users/buyers`;
     const { data: buyers = [], isLoading, refetch } = useQuery({
         queryKey: ['buyers'],
         queryFn: async () => {
@@ -21,9 +25,9 @@ const AllBuyers = () => {
             const data = await res.json();
             return data;
         }
-    })   
+    })
     const handleDeleteBuyer = (buyer) => {
-        fetch(`http://localhost:5000/users/buyers/${buyer?._id}`, {
+        fetch(`https://b612-used-products-resale-server-side-shourovhasan.vercel.app/users/buyers/${buyer?._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -39,7 +43,7 @@ const AllBuyers = () => {
             })
     }
     const handleMakeAdmin = (id) => {
-        fetch(`http://localhost:5000/users/buyers/${id}`, {
+        fetch(`https://b612-used-products-resale-server-side-shourovhasan.vercel.app/users/buyers/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -65,7 +69,7 @@ const AllBuyers = () => {
             <h3 className="mb-4 text-3xl text-center">
                 All Buyers
             </h3>
-            <div className="overflow-x-auto mx-2">
+            <div className="mx-2 overflow-x-auto">
                 {
                     buyers.length > 0 ?
                         <table className="table w-full">

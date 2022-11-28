@@ -6,17 +6,17 @@ import axios from "axios";
 // const axios = require('axios');
 const Footer = () => {
     const [categories, setCategories] = React.useState(null);
-    const url = 'http://localhost:5000/categories3';
+    const url = 'https://b612-used-products-resale-server-side-shourovhasan.vercel.app/categories3';
     React.useEffect(() => {
         axios.get(url, {
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
             }
         })
-        .then((response) => {
-        setCategories(response.data);
-        });
-    },[]) 
+            .then((response) => {
+                setCategories(response.data);
+            });
+    }, [])
     // console.log("categories", categories);
     if (!categories) return null;
     return (

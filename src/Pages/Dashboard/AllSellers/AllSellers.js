@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
+import useTitle from '../../../hooks/useTitle';
 import DeleteConfirmationModal from '../../SharedPages/DeleteConfirmationModal/DeleteConfirmationModal';
 import Loading from '../../SharedPages/Loading/Loading';
 
@@ -9,7 +10,9 @@ const AllSellers = () => {
     const closeModal = () => {
         setDeleteSeller(null);
     }
-    const url = `http://localhost:5000/users/sellers`;
+
+    useTitle('All Sellers');
+    const url = `https://b612-used-products-resale-server-side-shourovhasan.vercel.app/users/sellers`;
     const { data: sellers = [], isLoading, refetch } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
@@ -23,7 +26,7 @@ const AllSellers = () => {
         }
     })
     const handleDeleteBuyer = (seller) => {
-        fetch(`http://localhost:5000/users/sellers/${seller?._id}`, {
+        fetch(`https://b612-used-products-resale-server-side-shourovhasan.vercel.app/users/sellers/${seller?._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -39,7 +42,7 @@ const AllSellers = () => {
             })
     }
     const handleMakeAdmin = (id) => {
-        fetch(`http://localhost:5000/users/sellers/${id}`, {
+        fetch(`https://b612-used-products-resale-server-side-shourovhasan.vercel.app/users/sellers/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -56,7 +59,7 @@ const AllSellers = () => {
             .catch(err => console.error(err.message))
     }
     const handleMakeVerify = (id) => {
-        fetch(`http://localhost:5000/users/sellerVerify/${id}`, {
+        fetch(`https://b612-used-products-resale-server-side-shourovhasan.vercel.app/users/sellerVerify/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -82,7 +85,7 @@ const AllSellers = () => {
             <h3 className="mb-4 text-3xl text-center">
                 All Sellers
             </h3>
-            <div className="overflow-x-auto mx-2">
+            <div className="mx-2 overflow-x-auto">
                 {
                     sellers.length > 0 ?
                         <table className="table w-full">

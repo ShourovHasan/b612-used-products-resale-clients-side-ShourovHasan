@@ -1,11 +1,13 @@
 import React from 'react';
+import useTitle from '../../hooks/useTitle';
 
 const Blog = () => {
+    useTitle('Blog');
     return (
         <div className='my-12'>
-            <h2 className='text-lg lg:text-4xl md:text-xl font-bold text-center text-primary mb-5'>Frequently Asked Questions</h2>
-            <div className='grid lg:grid-cols-2 grid-cols-1 gap-4'>
-                <div className="card bg-base-100 shadow-xl shadow-neutral">
+            <h2 className='mb-5 text-lg font-bold text-center lg:text-4xl md:text-xl text-primary'>Frequently Asked Questions</h2>
+            <div className='grid grid-cols-1 gap-4 lg:grid-cols-2'>
+                <div className="shadow-xl card bg-base-100 shadow-neutral">
                     <div className="card-body">
                         <h2 className="card-title">What are the different ways to manage a state in a React application?</h2>
                         <p>There are several ways to manage state in a React application:</p>
@@ -22,7 +24,7 @@ const Blog = () => {
                         </ul>
                     </div>
                 </div>
-                <div className="card bg-base-100 shadow-xl shadow-neutral">
+                <div className="shadow-xl card bg-base-100 shadow-neutral">
                     <div className="card-body">
                         <h2 className="card-title">How does prototypical inheritance work?</h2>
                         <ul className='ml-6 list-disc list-outside marker:text-green'>
@@ -32,7 +34,7 @@ const Blog = () => {
                         </ul>
                     </div>
                 </div>
-                <div className="card bg-base-100 shadow-xl shadow-neutral">
+                <div className="shadow-xl card bg-base-100 shadow-neutral">
                     <div className="card-body">
                         <h2 className="card-title">What is a unit test? Why should we write unit tests?</h2>
                         <ul className='ml-6 list-disc list-outside marker:text-green'>
@@ -43,7 +45,7 @@ const Blog = () => {
                         </ul>
                     </div>
                 </div>
-                <div className="card bg-base-100 shadow-xl shadow-neutral">
+                <div className="shadow-xl card bg-base-100 shadow-neutral">
                     <div className="card-body">
                         <h2 className="card-title">React vs. Angular vs. Vue?</h2>
                         <ul className='ml-6 list-disc list-outside marker:text-green'>

@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import useTitle from '../../../hooks/useTitle';
 import DeleteConfirmationModal from '../../SharedPages/DeleteConfirmationModal/DeleteConfirmationModal';
 import Loading from '../../SharedPages/Loading/Loading';
 
@@ -11,11 +12,12 @@ const MyProducts = () => {
     const closeModal = () => {
         setDeleteProduct(null);
     }
+    useTitle('My Products');
 
     const { data: products = [], isLoading, refetch } = useQuery({
         queryKey: ['products', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/products?sellerEmail=${user?.email}`, {
+            const res = await fetch(`https://b612-used-products-resale-server-side-shourovhasan.vercel.app/products?sellerEmail=${user?.email}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 },
@@ -25,7 +27,7 @@ const MyProducts = () => {
         }
     })
     const handleMakeAdvertise = (id) => {
-        fetch(`http://localhost:5000/products/seller/${id}`, {
+        fetch(`https://b612-used-products-resale-server-side-shourovhasan.vercel.app/products/seller/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -43,7 +45,7 @@ const MyProducts = () => {
     }
     const handleDeleteProduct = (product) => {
         // console.log(product);
-        fetch(`http://localhost:5000/products/${product?._id}`, {
+        fetch(`https://b612-used-products-resale-server-side-shourovhasan.vercel.app/products/${product?._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -58,59 +60,65 @@ const MyProducts = () => {
                 }
             })
     }
-    
+
     if (isLoading) {
         return <Loading></Loading>
     }
     return (
         <div>
             <h2 className="mb-4 text-3xl text-center">My Products</h2>
-            <div className="overflow-x-auto mx-2">
+            <div className="mx-2 overflow-x-auto">
                 {
                     products.length > 0 ?
-                    <table className="table w-full">
-                        {/* <!-- head --> */}
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Status</th>
-                                <th>Advertise</th>
-                                <th>Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                products.map((product, indx) =>
-                                    <tr key={product._id}>
-                                        <th>{indx + 1}</th>
-                                        <td>{product.productName}</td>
-                                        <td>{product.resalePrice}</td>
-                                        <td>
-                                            {product?.soldStatus !== 'sold' ?
-                                            <p className='text-neutral'>Available</p>
-                                            :
-                                            <p className='text-neutral'>Sold</p>
-                                            }
-                                        </td>
-                                        <td >
-                                            {product?.advStatus !== 'advertised' ?
-                                                <button onClick={() => handleMakeAdvertise(product?._id)} className='btn btn-xs btn-primary'>Make Advertise</button>
-
-                                                :
-                                                <p className='text-neutral'>
-                                                    {(product?.advStatus === 'advertised' && product?.soldStatus !== 'sold') ? 'Advertising' : 'Advertised'}
-                                                </p>
-                                            }
-                                        </td>
-                                        <td>
-                                            <label onClick={() => setDeleteProduct(product)} htmlFor="confirmation_modal" className='text-white btn btn-error btn-xs'>Delete</label>
-                                        </td>
-                                    </tr>
-                                )
-                            }
-                        </tbody>
+                        <table className="table w-full">
+                            {/* <!-- head --> */}
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                    <th>Advertise</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    products.map((product, indx) =>
+                                        <tr key={product._id}>
+                                            <th>{indx + 1}</th>
+                                            <td>{product.productName}</td>
+                                            <td>{product.resalePrice}</td>
+                                            <td>
+                                                {product?.soldStatus !== 'sold' ?
+                                                    <p className='text-neutral'>Available</p>
+                                                    :
+                                                    <p className='text-neutral'>Sold</p>
+                                                }
+                                            </td>
+                                            <td >
+                                                {product?.advStatus !== 'advertised' ?
+                                                    <>
+                                                        {
+                                                            product?.soldStatus !== 'sold' ?
+                                                                <button onClick={() => handleMakeAdvertise(product?._id)} className='btn btn-xs btn-primary'>Make Advertise</button>
+                                                                :
+                                                                <button className='text-white btn btn-xs btn-error'>Can't Advertise</button>
+                                                        }
+                                                    </>
+                                                    :
+                                                    <p className='text-neutral'>
+                                                        {product?.advStatus === 'advertised' && 'Advertising'}
+                                                    </p>
+                                                }
+                                            </td>
+                                            <td>
+                                                <label onClick={() => setDeleteProduct(product)} htmlFor="confirmation_modal" className='text-white btn btn-error btn-xs'>Delete</label>
+                                            </td>
+                                        </tr>
+                                    )
+                                }
+                            </tbody>
                         </table>
                         :
                         <div>

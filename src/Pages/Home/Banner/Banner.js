@@ -47,7 +47,7 @@ const Banner = () => {
     const { data: productsPic, isLoading } = useQuery({
         queryKey: ['productsPic'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/productsPic')
+            const res = await fetch('https://b612-used-products-resale-server-side-shourovhasan.vercel.app/productsPic')
             const data = await res.json();
             return data;
         }
@@ -62,7 +62,7 @@ const Banner = () => {
                 {
                     productsPic.map(product =>
                         <div key={product._id} className="bg-base-100 h-80">
-                            <figure className='flex justify-center'><img src={product.productPicture} alt="Shoes" /></figure>
+                            <figure className='flex justify-center'><img src={product.productPicture} alt="Resale Mobile Store" /></figure>
                             <div className="card-body">
                                 <h2 className="card-title">{product.productName}</h2>
                             </div>

@@ -10,7 +10,7 @@ const AdvertisedItems = () => {
     const { data: products = [], refetch, isLoading } = useQuery({
         queryKey: ['advProducts'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/advProducts`,{
+            const res = await fetch(`https://b612-used-products-resale-server-side-shourovhasan.vercel.app/advProducts`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 },
@@ -25,7 +25,7 @@ const AdvertisedItems = () => {
     }
     // console.log('products', products)
     return (
-        <section className = 'my-12'>
+        <section className='my-12'>
             {
                 products.length > 0 &&
                 <>

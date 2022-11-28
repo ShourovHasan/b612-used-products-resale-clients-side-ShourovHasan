@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
+import useTitle from '../../../hooks/useTitle';
 import DeleteConfirmationModal from '../../SharedPages/DeleteConfirmationModal/DeleteConfirmationModal';
 import Loading from '../../SharedPages/Loading/Loading';
 
@@ -9,7 +10,8 @@ const AllAdmins = () => {
     const closeModal = () => {
         setDeleteAdmin(null);
     }
-    const url = `http://localhost:5000/users/admins`;
+    useTitle('All Admins');
+    const url = `https://b612-used-products-resale-server-side-shourovhasan.vercel.app/users/admins`;
     const { data: admins = [], isLoading, refetch } = useQuery({
         queryKey: ['admins'],
         queryFn: async () => {
@@ -23,7 +25,7 @@ const AllAdmins = () => {
         }
     })
     const handleDeleteBuyer = (admin) => {
-        fetch(`http://localhost:5000/users/admins/${admin?._id}`, {
+        fetch(`https://b612-used-products-resale-server-side-shourovhasan.vercel.app/users/admins/${admin?._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -38,7 +40,7 @@ const AllAdmins = () => {
                 }
             })
     }
-    
+
     // console.log(buyers);
     if (isLoading) {
         return <Loading></Loading>
@@ -48,7 +50,7 @@ const AllAdmins = () => {
             <h3 className="mb-4 text-3xl text-center">
                 All Admins
             </h3>
-            <div className="overflow-x-auto mx-2">
+            <div className="mx-2 overflow-x-auto">
                 {
                     admins.length > 0 ?
                         <table className="table w-full">

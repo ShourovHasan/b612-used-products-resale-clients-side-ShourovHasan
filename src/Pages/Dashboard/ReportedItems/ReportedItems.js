@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
+import useTitle from '../../../hooks/useTitle';
 import DeleteConfirmationModal from '../../SharedPages/DeleteConfirmationModal/DeleteConfirmationModal';
 import Loading from '../../SharedPages/Loading/Loading';
 
@@ -9,7 +10,8 @@ const ReportedItems = () => {
     const closeModal = () => {
         setDeleteReport(null);
     }
-    const url = `http://localhost:5000/reports`;
+    useTitle('Reported Items');
+    const url = `https://b612-used-products-resale-server-side-shourovhasan.vercel.app/reports`;
     const { data: reports = [], isLoading, refetch } = useQuery({
         queryKey: ['reports'],
         queryFn: async () => {
@@ -23,7 +25,7 @@ const ReportedItems = () => {
         }
     })
     const handleDeleteBuyer = (report) => {
-        fetch(`http://localhost:5000/reports/${report?._id}`, {
+        fetch(`https://b612-used-products-resale-server-side-shourovhasan.vercel.app/reports/${report?._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -48,7 +50,7 @@ const ReportedItems = () => {
             <h3 className="mb-4 text-3xl text-center">
                 All Reports
             </h3>
-            <div className="overflow-x-auto mx-2">
+            <div className="mx-2 overflow-x-auto">
                 {
                     reports.length > 0 ?
                         <table className="table w-full">

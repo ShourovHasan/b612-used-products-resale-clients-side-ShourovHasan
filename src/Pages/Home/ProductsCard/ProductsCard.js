@@ -4,13 +4,13 @@ import { AuthContext } from '../../../contexts/AuthProvider';
 
 const ProductsCard = ({ product, setBooking }) => {
     const { productName, productPicture, publishedTime, purchaseYear, productCondition, productDescription, resalePrice, sellerLocation, sellerName, sellerPhoneNumber, useOfYears, sellerEmail, originalPrice } = product;
-    const { user } = useContext(AuthContext);    
+    const { user } = useContext(AuthContext);
     const [seller, setSeller] = useState([]);
     // const [payment, setPayment] = useState([]);
 
     useEffect(() => {
         if (sellerEmail) {
-            fetch(`http://localhost:5000/users/sellerVerify/${sellerEmail}`)
+            fetch(`https://b612-used-products-resale-server-side-shourovhasan.vercel.app/users/sellerVerify/${sellerEmail}`)
                 .then(res => res.json())
                 .then(data => {
                     setSeller(data);
@@ -20,7 +20,7 @@ const ProductsCard = ({ product, setBooking }) => {
 
     // useEffect(() => {
     //     if (product?._id) {
-    //         fetch(`http://localhost:5000/paymentVerify/${product?._id}`)
+    //         fetch(`https://b612-used-products-resale-server-side-shourovhasan.vercel.app/paymentVerify/${product?._id}`)
     //         .then(res => res.json())
     //         .then(data => {
     //             setPayment(data);
@@ -45,7 +45,7 @@ const ProductsCard = ({ product, setBooking }) => {
             reporterEmail: user?.email,
         }
         // console.log(booking);
-        fetch('http://localhost:5000/reports', {
+        fetch('https://b612-used-products-resale-server-side-shourovhasan.vercel.app/reports', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -93,7 +93,7 @@ const ProductsCard = ({ product, setBooking }) => {
                                         seller?.verifySeller !== 'verified' ?
                                             <span className='text-red-500'> Not Verified Seller</span>
                                             :
-                                                <span className=''><input type="checkbox" defaultChecked className="w-3 h-3 checkbox checkbox-info" /> Verified Seller</span>
+                                            <span className=''><input type="checkbox" defaultChecked className="w-3 h-3 checkbox checkbox-info" /> Verified Seller</span>
                                     } )</small></li>
                                     <li><small>Location: {sellerLocation}</small></li>
                                     <li><small>Phone: {sellerPhoneNumber}</small></li>
@@ -101,7 +101,7 @@ const ProductsCard = ({ product, setBooking }) => {
                             </li>
                         </ul>
                         <div className="justify-center card-actions">
-                                <button onClick={() => handleReport(product)} className="border-none shadow-sm shadow-neutral text-white btn bg-gradient-to-r from-secondary to-primary btn-sm">Report to Admin</button>
+                            <button onClick={() => handleReport(product)} className="border-none shadow-sm shadow-neutral text-white btn bg-gradient-to-r from-secondary to-primary btn-sm">Report to Admin</button>
                         </div>
                         <div className="justify-center card-actions">
                             <label onClick={() => setBooking(product)} htmlFor="booking-modal" className="w-full border-none shadow-sm shadow-neutral text-white btn bg-gradient-to-r from-secondary to-primary">Book Now</label>

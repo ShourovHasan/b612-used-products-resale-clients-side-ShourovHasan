@@ -8,7 +8,7 @@ const CategoryWiseProducts = () => {
     const { data: categories = [], isLoading } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/categories')
+            const res = await fetch('https://b612-used-products-resale-server-side-shourovhasan.vercel.app/categories')
             const data = await res.json();
             return data;
         }
@@ -22,20 +22,20 @@ const CategoryWiseProducts = () => {
             <div className='flex justify-center gap-2 navbar'>
                 <ul className="p-0 menu menu-horizontal">
                     {
-                    categories.map(category =>
-                        <li
-                        // onClick={() => handleProducts(category)}
-                        key={category._id}
-                            className='mx-1 mb-3 border-2 rounded-lg'
-                        >
-                            <Link to={`/category/${category._id}`} className='h-10 p-0 m-0 '>
-                                <img src={category.categoryPicture} className='w-10 h-10' alt="" />
-                                <p className='mr-3 text-xl font-bold'><span className='flex items-center'>{category.categoryName} <FaAngleDoubleRight className='ml-2'></FaAngleDoubleRight></span></p>
-                            </Link>
-                            </li>              
+                        categories.map(category =>
+                            <li
+                                // onClick={() => handleProducts(category)}
+                                key={category._id}
+                                className='mx-1 mb-3 border-2 rounded-lg'
+                            >
+                                <Link to={`/category/${category._id}`} className='h-10 p-0 m-0 '>
+                                    <img src={category.categoryPicture} className='w-10 h-10' alt="" />
+                                    <p className='mr-3 text-xl font-bold'><span className='flex items-center'>{category.categoryName} <FaAngleDoubleRight className='ml-2'></FaAngleDoubleRight></span></p>
+                                </Link>
+                            </li>
                         )
                     }
-                </ul> 
+                </ul>
             </div>
 
         </div>
