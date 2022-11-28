@@ -4,14 +4,14 @@ import toast from 'react-hot-toast';
 import DeleteConfirmationModal from '../../SharedPages/DeleteConfirmationModal/DeleteConfirmationModal';
 import Loading from '../../SharedPages/Loading/Loading';
 
-const ReportedItems = () => {
-    const [deleteReport, setDeleteReport] = useState(null);
+const AllAdmins = () => {
+    const [deleteAdmin, setDeleteAdmin] = useState(null);
     const closeModal = () => {
-        setDeleteReport(null);
+        setDeleteAdmin(null);
     }
-    const url = `http://localhost:5000/reports`;
-    const { data: reports = [], isLoading, refetch } = useQuery({
-        queryKey: ['reports'],
+    const url = `http://localhost:5000/users/admins`;
+    const { data: admins = [], isLoading, refetch } = useQuery({
+        queryKey: ['admins'],
         queryFn: async () => {
             const res = await fetch(url, {
                 headers: {
@@ -22,8 +22,8 @@ const ReportedItems = () => {
             return data;
         }
     })
-    const handleDeleteBuyer = (report) => {
-        fetch(`http://localhost:5000/reports/${report?._id}`, {
+    const handleDeleteBuyer = (admin) => {
+        fetch(`http://localhost:5000/users/admins/${admin?._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -33,12 +33,12 @@ const ReportedItems = () => {
             .then(data => {
                 console.log(data);
                 if (data.acknowledged) {
-                    toast.success(`Report is deleted successfully`)
+                    toast.success(`Seller ${admin.displayName} is deleted successfully`)
                     refetch();
                 }
             })
     }
-
+    
     // console.log(buyers);
     if (isLoading) {
         return <Loading></Loading>
@@ -46,36 +46,30 @@ const ReportedItems = () => {
     return (
         <div>
             <h3 className="mb-4 text-3xl text-center">
-                All Reports
+                All Admins
             </h3>
             <div className="overflow-x-auto mx-2">
                 {
-                    reports.length > 0 ?
+                    admins.length > 0 ?
                         <table className="table w-full">
                             {/* <!-- head --> */}
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th>Image</th>
                                     <th>Name</th>
-                                    <th>Reporter Email</th>
-                                    <th>Seller Email</th>
+                                    <th>Email</th>
                                     <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {
-                                    reports.map((report, indx) =>
-                                        <tr key={report._id}>
+                                    admins.map((admin, indx) =>
+                                        <tr key={admin._id}>
                                             <th>{indx + 1}</th>
+                                            <td>{admin.displayName}</td>
+                                            <td>{admin.email}</td>
                                             <td>
-                                                <img className='w-12 rounded' src={report.productPicture} alt="" />
-                                            </td>
-                                            <td>{report.productName}</td>
-                                            <td>{report.reporterEmail}</td>
-                                            <td>{report.sellerEmail}</td>
-                                            <td>
-                                                <label onClick={() => setDeleteReport(report)} htmlFor="confirmation_modal" className='text-white btn btn-error btn-xs'>Delete</label>
+                                                <label onClick={() => setDeleteAdmin(admin)} htmlFor="confirmation_modal" className='text-white btn btn-error btn-xs'>Delete</label>
                                             </td>
                                         </tr>
                                     )
@@ -84,16 +78,16 @@ const ReportedItems = () => {
                         </table>
                         :
                         <div className='w-full h-96'>
-                            <h2 className='text-3xl text-center text-primary '>Here have no Reports.</h2>
+                            <h2 className='text-3xl text-center text-primary '>Here have no Admins.</h2>
                         </div>
                 }
             </div>
             {
-                deleteReport && <DeleteConfirmationModal
+                deleteAdmin && <DeleteConfirmationModal
                     deleteTitle={`Are you sure? you want to delete?`}
-                    message={`If you delete. It cannot get the Buyer back.`}
+                    message={`If you delete ${deleteAdmin.name}. It cannot get the Buyer back.`}
                     successAction={handleDeleteBuyer}
-                    modalData={deleteReport}
+                    modalData={deleteAdmin}
                     closeModal={closeModal}
                     successButtonName='Delete'
                 ></DeleteConfirmationModal>
@@ -102,4 +96,4 @@ const ReportedItems = () => {
     );
 };
 
-export default ReportedItems;
+export default AllAdmins;

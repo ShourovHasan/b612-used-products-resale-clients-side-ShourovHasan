@@ -3,12 +3,16 @@ import { Link, NavLink } from 'react-router-dom';
 import HandleTheme from '../../../components/HandleTheme/HandleTheme';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import './Header.css';
+import logo from '../../../asssets/logo/resale_Logo.png';
+
 const Header = () => {
     const { user, LogOut, handleDark } = useContext(AuthContext);
     
     const handleLogOut = () => {
         LogOut()
-            .then(() => { })
+            .then(() => {
+                localStorage.removeItem('accessToken');
+             })
             .catch(error => console.error(error.message))
     }
     // <></> or < React.Fragment ></React.Fragment> both are same
@@ -30,7 +34,7 @@ const Header = () => {
         </label>
     </React.Fragment>
     return (
-        <div className="navbar bg-base-100 text-neutral">
+        <div className="navbar text-neutral">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -40,7 +44,10 @@ const Header = () => {
                         {menuItems}
                     </ul>
                 </div>
-                <Link to='/' className="text-xl normal-case btn btn-ghost">Resale Mobile Store</Link>
+                <Link to='/' className="text-2xl normal-case btn btn-ghost text-primary">
+                    <img src={logo} className='w-6 mr-2' alt="" />
+                    Resale Mobile Store
+                </Link>
             </div>
             <div className="hidden navbar-end lg:flex">
                 <ul className="p-0 menu menu-horizontal">

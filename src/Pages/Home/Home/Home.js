@@ -1,10 +1,16 @@
 import React from 'react';
+import AdvertisedItems from '../AdvertisedItems/AdvertisedItems';
+import Banner from '../Banner/Banner';
+import CategoryWiseProducts from '../CategoryWiseProducts/CategoryWiseProducts';
+import WelcomeHome from '../WelcomeHome/WelcomeHome';
 
 const Home = () => {
     return (
         <div>
-            Home
-            <button className='btn'>btn</button>
+            <Banner></Banner>
+            <AdvertisedItems></AdvertisedItems>
+            <CategoryWiseProducts></CategoryWiseProducts>
+            <WelcomeHome></WelcomeHome>
         </div>
     );
 };

@@ -20,7 +20,7 @@ const AuthProvider = ({ children }) => {
     
     useEffect(() => {
         const localStoredDark = JSON.parse(localStorage.getItem("dark-mode"));
-        console.log(localStoredDark);
+        // console.log(localStoredDark);
         setDark(localStoredDark);
     }, []);
 

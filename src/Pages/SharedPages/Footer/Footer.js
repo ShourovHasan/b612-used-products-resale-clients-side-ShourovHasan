@@ -1,22 +1,37 @@
+// import React, { useEffect, useState } from 'react';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import axios from "axios";
 
+// const axios = require('axios');
 const Footer = () => {
+    const [categories, setCategories] = React.useState(null);
+    const url = 'http://localhost:5000/categories3';
+    React.useEffect(() => {
+        axios.get(url, {
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        .then((response) => {
+        setCategories(response.data);
+        });
+    },[]) 
+    // console.log("categories", categories);
+    if (!categories) return null;
     return (
         <div className='pb-10 text-white bg-black'>
             <footer className="justify-around p-10 footer ">
                 <div>
-                    <span className="footer-title">Services</span>
-                    <Link to="/" className="link link-hover">Branding</Link>
-                    <Link to="/" className="link link-hover">Design</Link>
-                    <Link to="/" className="link link-hover">Marketing</Link>
-                    <Link to="/" className="link link-hover">Advertisement</Link>
+                    <span className="footer-title">Categories</span>
+                    {
+                        categories.map(category => <Link key={category._id} to={`/category/${category._id}`} className="link link-hover">{category?.categoryName}</Link>)
+                    }
                 </div>
                 <div>
-                    <span className="footer-title">Company</span>
+                    <span className="footer-title">Resale Mobile Store</span>
                     <Link to="/" className="link link-hover">About us</Link>
-                    <Link to="/" className="link link-hover">Contact</Link>
-                    <Link to="/" className="link link-hover">Jobs</Link>
+                    <Link to="/" className="link link-hover">Contact us</Link>
                     <Link to="/" className="link link-hover">Press kit</Link>
                 </div>
                 <div>

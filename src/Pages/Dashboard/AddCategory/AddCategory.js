@@ -86,7 +86,7 @@ const AddCategory = () => {
                     })} type="file" placeholder="Upload Category Picture" className="w-full file-input file-input-bordered" />
                     {errors.categoryPicture && <p className='ml-4 text-red-500'>{errors.categoryPicture.message}</p>}
                 </div>
-                <input type="submit" className='w-full pb-0 mt-5 mb-0 btn' defaultValue='Add Category' />
+                <input type="submit" className='w-full pb-0 mt-5 mb-0 btn bg-gradient-to-r from-secondary to-primary text-white' value='Add Category' />
             </form>
         </div>
     );

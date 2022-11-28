@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import userEvent from '@testing-library/user-event';
 import { format } from 'date-fns';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
@@ -26,7 +25,8 @@ const AddProduct = () => {
         }
     })
 
-    const handleAddProduct = data => {
+    const handleAddProduct = (data, event) => {
+        const form = event.target;
         const image = data.productPicture[0];
         // console.log(image);
         const formData = new FormData();
@@ -52,7 +52,7 @@ const AddProduct = () => {
                         purchaseYear: data.purchaseYear,
                         originalPrice: data.originalPrice,
                         resalePrice: data.resalePrice,
-                        categoryId: data.categoryId,
+                        categoryId: form.categoryId.value,
                         productDescription: data.productDescription,
                         productPicture: imgData.data.url,
                         
@@ -85,7 +85,7 @@ const AddProduct = () => {
             <h2 className='text-4xl text-center text-primary'>Add A Product</h2>
             <form onSubmit={handleSubmit(handleAddProduct)} className=''>
                 {/* <Header /> */}
-                <div className='grid lg:grid-cols-2 grid-cols-1  lg:gap-4'>
+                <div className='grid grid-cols-1 lg:grid-cols-2 lg:gap-4'>
                     <div className="w-full form-control">
                         <label className="label">
                             <span className="label-text">Product Name</span>
@@ -102,8 +102,9 @@ const AddProduct = () => {
                         <select {...register("sellerLocation", {
                             required: "seller location is required"
                         })} className="w-full select input-bordered">
-                            <option selected className='text-3xl py-2'>Dhaka</option>
-                            <option className='text-3xl py-2'>Chittagong</option>
+
+                            <option className='py-2 text-3xl' defaultValue='Dhaka'>Dhaka</option>
+                            <option className='py-2 text-3xl' defaultValue='Chittagong'>Chittagong</option>
                         </select>
                         {errors.sellerLocation && <p className='ml-4 text-red-500'>{errors.sellerLocation.message}</p>}
                     </div>
@@ -123,9 +124,9 @@ const AddProduct = () => {
                         <select {...register("productCondition", {
                             required: "product condition is required"
                         })} className="w-full select input-bordered">
-                            <option selected className='text-3xl py-2'>Excellent</option>
-                            <option className='text-3xl py-2'>Good</option>
-                            <option className='text-3xl py-2'>Fair</option>
+                            <option selected className='py-2 text-3xl' defaultValue='Excellent'>Excellent</option>
+                            <option className='py-2 text-3xl' defaultValue='Good'>Good</option>
+                            <option className='py-2 text-3xl' defaultValue='Fair'>Fair</option>
                         </select>
                         {errors.productCondition && <p className='ml-4 text-red-500'>{errors.productCondition.message}</p>}
                     </div>
@@ -169,12 +170,12 @@ const AddProduct = () => {
                         <label className="label">
                             <span className="label-text">Product Category</span>
                         </label>
-                        <select {...register("categoryId")} className="w-full select input-bordered">
+                        <select name='categoryId' className="w-full select input-bordered">
                             {
-                                categories.map(category => <option
+                                categories.map((category) => <option
                                     key={category._id}
-                                    defaultValue={category._id}
-                                    className='text-3xl py-2'
+                                    value={category._id}
+                                    className='py-2 text-3xl'
                                 >{category.categoryName}</option>)
                             }
                         </select>
@@ -198,7 +199,7 @@ const AddProduct = () => {
                     })} type="text" placeholder="product description" className="w-full h-20 input input-bordered" />
                     {errors.productDescription && <p role="alert" className='ml-4 text-red-600'>{errors.productDescription?.message}</p>}
                 </div>
-                <input type="submit" className='w-full pb-0 mt-5 mb-0  btn' defaultValue='Add Product' />
+                <input type="submit" className='w-full pb-0 mt-5 mb-0 btn bg-gradient-to-r from-secondary to-primary text-white' value='Add Product' />
             </form>
         </div>
     );

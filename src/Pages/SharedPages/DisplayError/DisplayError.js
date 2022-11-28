@@ -10,17 +10,18 @@ const DisplayError = () => {
     const handleLogOut = () => {
         LogOut()
             .then(() => {
+                localStorage.removeItem('accessToken');
                 navigate('/login');
             })
             .catch(error => console.error(error.message))
     }
     return (
-        <div className='flex flex-col items-center my-32'>
+        <div className='flex flex-col items-center h-screen py-32 bg-secondary'>
             <p className='text-red-500'>Something went wrong!!!</p>
             <p className='text-red-500'>
                 {error.statusText || error.message}
             </p>
-            <h4 className='text-4xl'>Please <button onClick={handleLogOut} className='text-white rounded-xl btn'>Sign Out</button> and log back in</h4>
+            <h4 className='text-4xl'>Please <button onClick={handleLogOut} className='rounded-xl text-neutral btn bg-gradient-to-r from-secondary to-primary'>Sign Out</button> and log back in</h4>
         </div>
     );
 };

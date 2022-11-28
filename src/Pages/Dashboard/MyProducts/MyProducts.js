@@ -7,9 +7,9 @@ import Loading from '../../SharedPages/Loading/Loading';
 
 const MyProducts = () => {
     const { user } = useContext(AuthContext);
-    const [deletingProduct, setDeletingProduct] = useState(null);
+    const [deleteProduct, setDeleteProduct] = useState(null);
     const closeModal = () => {
-        setDeletingProduct(null);
+        setDeleteProduct(null);
     }
 
     const { data: products = [], isLoading, refetch } = useQuery({
@@ -64,8 +64,8 @@ const MyProducts = () => {
     }
     return (
         <div>
-            <h2 className="mb-4 text-3xl">My Products</h2>
-            <div className="overflow-x-auto">
+            <h2 className="mb-4 text-3xl text-center">My Products</h2>
+            <div className="overflow-x-auto mx-2">
                 {
                     products.length > 0 ?
                     <table className="table w-full">
@@ -105,7 +105,7 @@ const MyProducts = () => {
                                             }
                                         </td>
                                         <td>
-                                            <label onClick={() => setDeletingProduct(product)} htmlFor="confirmation_modal" className='text-white btn btn-error btn-xs'>Delete</label>
+                                            <label onClick={() => setDeleteProduct(product)} htmlFor="confirmation_modal" className='text-white btn btn-error btn-xs'>Delete</label>
                                         </td>
                                     </tr>
                                 )
@@ -119,11 +119,11 @@ const MyProducts = () => {
                 }
             </div>
             {
-                deletingProduct && <DeleteConfirmationModal
+                deleteProduct && <DeleteConfirmationModal
                     deleteTitle={`Are you sure? you want to delete?`}
-                    message={`If you delete ${deletingProduct.productName}. It cannot get the Product back.`}
+                    message={`If you delete ${deleteProduct.productName}. It cannot get the Product back.`}
                     successAction={handleDeleteProduct}
-                    modalData={deletingProduct}
+                    modalData={deleteProduct}
                     closeModal={closeModal}
                     successButtonName='Delete'
                 ></DeleteConfirmationModal>
