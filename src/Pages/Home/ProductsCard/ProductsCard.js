@@ -68,7 +68,8 @@ const ProductsCard = ({ product, setBooking }) => {
     return (
         <>
             {
-                (product.booking !== 'booked') &&
+                (product.booking !== 'paid') &&
+                // (product.booking !== 'paid' && product.booking !== 'booked') &&
                 <div className="shadow-xl card bg-base-100 shadow-neutral">
                     <figure><img src={productPicture} className='w-full h-44' alt="Shoes" /></figure>
                     <div className="p-0 mx-4 my-3 card-body">

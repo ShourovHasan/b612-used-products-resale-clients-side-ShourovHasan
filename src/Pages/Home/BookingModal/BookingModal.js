@@ -12,7 +12,7 @@ const BookingModal = ({ booking, setBooking, refetch }) => {
     // console.log('booking',booking.booking);
     const handleBooking = event => {
         event.preventDefault();
-        
+
         if (!user?.email) {
             toast.error('Please Login first for make booking.');
             return navigate('/login');
