@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import { useForm } from "react-hook-form";
 import useToken from '../../hooks/useToken';
@@ -18,8 +18,13 @@ const Login = () => {
     useTitle('Login');
 
     let navigate = useNavigate();
-    let location = useLocation();
-    let from = location.state?.from?.pathname || "/";
+    // let location = useLocation();
+    // let from = location.state?.from?.pathname || "/";
+
+
+    if (token) {
+        navigate('/');
+    }
 
     // sign in with email and password 
     const handleLogin = data => {
@@ -54,7 +59,7 @@ const Login = () => {
                 const userType = {
                     userType: 'buyer'
                 }
-                saveUser(user.displayName, user.email, userType.userType)
+                saveUser(user?.displayName, user?.email, userType?.userType)
             })
             .catch(error => {
                 // console.error(error.message);
@@ -85,16 +90,14 @@ const Login = () => {
                 // console.log('Save user', data);
             })
     }
-    if (token) {
-        navigate(from, { replace: true });
-    }
+
     return (
-        <div className="mb-5 hero h-[800px]">
-            <div className="flex-col gap-20 hero-content lg:flex-row">
-                <div className="w-1/3 text-center lg:text-left">
+        <div className="mb-10 hero lg:h-[800px] md:lg:h-[800px] mx-auto">
+            <div className="flex-col gap-20 mx-auto hero-content lg:flex-row md:flex-row">
+                <div className="text-center lg:w-1/3 lg:text-left md:w-1/3">
                     <Lottie loop={true} animationData={lottieLogin} />
                 </div>
-                <div className="px-5 rounded-lg shadow-xl shadow-neutral py-7 w-[385px]">
+                <div className="px-5 rounded-lg  shadow-neutral neumorphism_Banner_Card py-7 lg:w-[385px] md:w-[315px]">
                     <h2 className='mb-5 text-xl text-center'>Login</h2>
                     <form onSubmit={handleSubmit(handleLogin)} className=''>
                         {/* <Header /> */}

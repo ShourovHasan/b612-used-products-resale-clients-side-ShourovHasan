@@ -114,7 +114,7 @@ const CheckoutForm = ({ booking }) => {
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <CardElement className='px-3 py-2 border-2 rounded-lg border-neutral'
+                <CardElement className='px-3 py-2 border-2 rounded-lg border-neutral text-neutral'
                     options={{
                         style: {
                             base: {

@@ -11,10 +11,10 @@ const WelcomeHome = () => {
                         <Lottie loop={true} animationData={lottieHome} />
                     </div>
                     <div className='px-2 md:px-10 lg:w-1/2 lg:px-5'>
-                        <h1 className="mb-10 text-5xl font-bold">
+                        <h1 className="mb-10 text-5xl font-bold lg:text-4xl">
                             Don't Worry<br />
                             About Phone Resale<br />
-                            We Waiting For You
+                            We Are Waiting For You
                         </h1>
                         <p className="text-xl pt-7">
                             Our online resale mobile store is a convenient way to shop for used phones and other devices. You can browse through our inventory and purchase items using a credit card or PayPal. 

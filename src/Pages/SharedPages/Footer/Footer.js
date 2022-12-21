@@ -41,7 +41,7 @@ const Footer = () => {
                     <Link to="/" className="link link-hover">Cookie policy</Link>
                 </div>
             </footer>
-            <p className='text-center'>Copyright 2022 All Rights Reserved</p>
+            <p className='text-center'>Copyright 2022 All Rights Reserved by Shourov Hasan</p>
         </div>
     );
 };
