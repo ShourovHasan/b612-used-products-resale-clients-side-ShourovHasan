@@ -20,8 +20,8 @@ const Footer = () => {
     // console.log("categories", categories);
     if (!categories) return null;
     return (
-        <div className='pb-10 text-white bg-black'>
-            <footer className="justify-around p-10 footer ">
+        <div className='p-5 py-5 text-white bg-black lg:p-10'>
+            <footer className="justify-around footer xs:w-full sm:w-full">
                 <div>
                     <span className="footer-title">Categories</span>
                     {
@@ -41,7 +41,7 @@ const Footer = () => {
                     <Link to="/" className="link link-hover">Cookie policy</Link>
                 </div>
             </footer>
-            <p className='text-center'>Copyright 2022 All Rights Reserved by Shourov Hasan</p>
+            <p className='mt-3 text-center'>Copyright 2022 All Rights Reserved by Shourov Hasan</p>
         </div>
     );
 };

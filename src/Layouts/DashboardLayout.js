@@ -5,7 +5,7 @@ import useAdmin from '../hooks/useAdmin';
 import useBuyer from '../hooks/useBuyer';
 import useSeller from '../hooks/useSeller';
 import Header from '../Pages/SharedPages/Header/Header';
-
+import './DashboardLayout.css';
 
 const DashboardLayout = () => {
     const { user } = useContext(AuthContext);
@@ -21,9 +21,9 @@ const DashboardLayout = () => {
                 <div className="flex flex-col drawer-content">
                     <Outlet></Outlet>
                 </div>
-                <div className="w-48 drawer-side">
+                <div className="w-44 drawer-side ">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-                    <ul className="p-4 menu w-80 text-base-content ">
+                    <ul className="p-2 text-lg text-neutral menu dashboardLayoutContent">
                         {/* <!-- Sidebar content here --> */}
                         {
                             isAdmin && <>

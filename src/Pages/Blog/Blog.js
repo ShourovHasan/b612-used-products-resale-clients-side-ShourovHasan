@@ -1,13 +1,20 @@
 import React from 'react';
+import { useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthProvider';
 import useTitle from '../../hooks/useTitle';
+import Loading from '../SharedPages/Loading/Loading';
 
 const Blog = () => {
+    const { loading } = useContext(AuthContext);
     useTitle('Blog');
+    if (loading) {
+        return <Loading></Loading>
+    }
     return (
         <div className='my-12'>
-            <h2 className='mb-5 text-lg font-bold text-center lg:text-4xl md:text-xl text-primary'>Frequently Asked Questions</h2>
+            <h2 className='mb-10 text-2xl font-bold text-center lg:text-5xl md:text-4xl text-primary'>Frequently Asked Questions</h2>
             <div className='grid grid-cols-1 gap-4 lg:grid-cols-2'>
-                <div className="shadow-xl card bg-base-100 shadow-neutral">
+                <div className="neumorphism_Banner_Card card bg-base-100 ">
                     <div className="card-body">
                         <h2 className="card-title">What are the different ways to manage a state in a React application?</h2>
                         <p>There are several ways to manage state in a React application:</p>

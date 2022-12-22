@@ -18,7 +18,7 @@ const CategoryWiseProducts = () => {
     }
     return (
         <div className='my-12'>
-            <h2 className='mb-3 text-lg font-bold text-center lg:text-4xl md:text-xl text-primary'>Second Hand Products Categories</h2>
+            <h2 className='mb-3 text-3xl font-bold text-center lg:text-4xl md:text-4xl text-primary'>Second Hand Products Categories</h2>
             <div className='flex justify-center gap-2 navbar'>
                 <ul className="p-0 menu menu-horizontal">
                     {

@@ -44,7 +44,7 @@ const Header = () => {
                         {menuItems}
                     </ul>
                 </div>
-                <Link to='/' className="text-2xl normal-case btn btn-ghost text-primary">
+                <Link to='/' className="normal-case lg:text-2xl btn btn-ghost text-primary">
                     <img src={logo} className='w-6 mr-2' alt="" />
                     Resale Mobile Store
                 </Link>
@@ -54,9 +54,11 @@ const Header = () => {
                     {menuItems}
                 </ul>
             </div>
-            <label tabIndex={2} htmlFor="dashboard-drawer" className="navbar-end btn btn-ghost lg:hidden ">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-            </label>
+            <div className="navbar-end lg:hidden">
+                <label htmlFor="dashboard-drawer" className='btn btn-ghost'>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                </label>
+            </div>
         </div>
     );
 };

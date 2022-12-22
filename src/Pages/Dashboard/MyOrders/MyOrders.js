@@ -8,7 +8,7 @@ import DeleteConfirmationModal from '../../SharedPages/DeleteConfirmationModal/D
 import Loading from '../../SharedPages/Loading/Loading';
 
 const MyOrders = () => {
-    const { user } = useContext(AuthContext);
+    const { user, loading } = useContext(AuthContext);
     const [deleteBooking, setDeleteBooking] = useState(null)
     const closeModal = () => {
         setDeleteBooking(null);
@@ -82,7 +82,9 @@ const MyOrders = () => {
             })
 
     }
-
+    if (loading) {
+        return <Loading></Loading>
+    }
     if (isLoading) {
         return <Loading></Loading>
     }
