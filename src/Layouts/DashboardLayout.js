@@ -23,28 +23,28 @@ const DashboardLayout = () => {
                 </div>
                 <div className="w-44 drawer-side ">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-                    <ul className="p-2 text-lg text-neutral menu dashboardLayoutContent">
+                    <ul className="p-2 text-lg text-neutral menu dashboardLayoutContent ">
                         {/* <!-- Sidebar content here --> */}
                         {
                             isAdmin && <>
-                                <li><Link to='/dashboard/allBuyers'>All Buyers</Link></li>
-                                <li><Link to='/dashboard/allSellers'>All Sellers</Link></li>
-                                <li><Link to='/dashboard/allAdmins'>All Admins</Link></li>
-                                <li><Link to='/dashboard/reportedItems'>Reported Items</Link></li>
-                                <li><Link to='/dashboard/allCategories'>All Categories</Link></li>
+                                <li className='border border-primary'><Link to='/dashboard/allBuyers'>All Buyers</Link></li>
+                                <li className='border border-primary'><Link to='/dashboard/allSellers'>All Sellers</Link></li>
+                                <li className='border border-primary'><Link to='/dashboard/allAdmins'>All Admins</Link></li>
+                                <li className='border border-primary'><Link to='/dashboard/reportedItems'>Reported Items</Link></li>
+                                <li className='border border-primary'><Link to='/dashboard/allCategories'>All Categories</Link></li>
                             </>
                         }
                         {
                             isSeller && <>
-                                <li><Link to='/dashboard/myProducts'>My Products</Link></li>
-                                <li><Link to='/dashboard/addProduct'>Add Product</Link></li>                                
-                                <li><Link to='/dashboard/myBuyers'>My Buyers</Link></li>                                
-                                <li><Link to='/dashboard/addCategory'>Add Category</Link></li>                                
+                                <li className='border border-primary'><Link to='/dashboard/myProducts'>My Products</Link></li>
+                                <li className='border border-primary'><Link to='/dashboard/addProduct'>Add Product</Link></li>                                
+                                <li className='border border-primary'><Link to='/dashboard/myBuyers'>My Buyers</Link></li>                                
+                                <li className='border border-primary'><Link to='/dashboard/addCategory'>Add Category</Link></li>                                
                             </>
                         }
                         {
                             isBuyer && <>
-                                <li><Link to='/dashboard/myOrders'>My Orders</Link></li>
+                                <li className='border border-primary'><Link to='/dashboard/myOrders'>My Orders</Link></li>
                                 {/* <li><Link to='/dashboard/myWishlist'>My Wishlist</Link></li>                                 */}
                             </>
                         }

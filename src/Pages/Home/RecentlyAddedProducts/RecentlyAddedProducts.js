@@ -4,13 +4,13 @@ import Loading from '../../SharedPages/Loading/Loading';
 import BookingModal from '../BookingModal/BookingModal';
 import ProductsCard from '../ProductsCard/ProductsCard';
 
-const AdvertisedItems = () => {
+const RecentlyAddedProducts = () => {
     const [booking, setBooking] = useState(null);
 
     const { data: products = [], refetch, isLoading } = useQuery({
-        queryKey: ['advProducts'],
+        queryKey: ['products3'],
         queryFn: async () => {
-            const res = await fetch(`https://b612-used-products-resale-server-side-shourovhasan.vercel.app/advProducts`, {
+            const res = await fetch(`https://b612-used-products-resale-server-side-shourovhasan.vercel.app/products3`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 },
@@ -29,7 +29,7 @@ const AdvertisedItems = () => {
             {
                 products.length > 0 &&
                 <>
-                    <h2 className='text-xl font-bold text-center lg:text-4xl divider text-primary md:text-3xl'>Advertised Products</h2>
+                    <h2 className='text-xl font-bold text-center lg:text-4xl divider text-primary md:text-3xl'>Recently Added Products</h2>
                     <div className='grid grid-cols-1 gap-4 mx-2 mt-10 mb-20 lg:grid-cols-3 md:grid-cols-2 lg:gap-8 md:gap-6 lg:mx-4 md:mx-2'>
                         {
                             products.map(product => <ProductsCard
@@ -53,4 +53,4 @@ const AdvertisedItems = () => {
     );
 };
 
-export default AdvertisedItems;
+export default RecentlyAddedProducts;

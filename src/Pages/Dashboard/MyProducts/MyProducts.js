@@ -74,12 +74,12 @@ const MyProducts = () => {
                             {/* <!-- head --> */}
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th>Name</th>
-                                    <th>Price</th>
-                                    <th>Status</th>
-                                    <th>Advertise</th>
-                                    <th>Delete</th>
+                                    <th className='bg-primary text-base-100'></th>
+                                    <th className='bg-primary text-base-100'>Name</th>
+                                    <th className='bg-primary text-base-100'>Price</th>
+                                    <th className='bg-primary text-base-100'>Status</th>
+                                    <th className='bg-primary text-base-100'>Advertise</th>
+                                    <th className='bg-primary text-base-100'>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>

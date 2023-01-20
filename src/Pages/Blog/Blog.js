@@ -12,7 +12,7 @@ const Blog = () => {
     }
     return (
         <div className='my-12'>
-            <h2 className='mb-10 text-2xl font-bold text-center lg:text-5xl md:text-4xl text-primary'>Frequently Asked Questions</h2>
+            <h2 className='mb-10 text-2xl font-bold text-center lg:text-5xl md:text-4xl text-primary divider'>Frequently Asked Questions</h2>
             <div className='grid grid-cols-1 gap-4 lg:grid-cols-2'>
                 <div className="neumorphism_Banner_Card card bg-base-100 ">
                     <div className="card-body">

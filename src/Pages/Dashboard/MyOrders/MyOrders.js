@@ -101,14 +101,14 @@ const MyOrders = () => {
                         <table className="table w-full">
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th>Image</th>
-                                    <th>Title</th>
-                                    <th>Price</th>
-                                    <th>Meeting Location</th>
-                                    <th>Seller Number</th>
-                                    <th>Payment</th>
-                                    <th>Delete</th>
+                                    <th className='bg-primary text-base-100'></th>
+                                    <th className='bg-primary text-base-100'>Image</th>
+                                    <th className='bg-primary text-base-100'>Title</th>
+                                    <th className='bg-primary text-base-100'>Price</th>
+                                    <th className='bg-primary text-base-100'>Meeting Location</th>
+                                    <th className='bg-primary text-base-100'>Seller Number</th>
+                                    <th className='bg-primary text-base-100'>Payment</th>
+                                    <th className='bg-primary text-base-100'>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>

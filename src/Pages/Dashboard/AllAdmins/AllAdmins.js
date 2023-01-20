@@ -57,10 +57,10 @@ const AllAdmins = () => {
                             {/* <!-- head --> */}
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Delete</th>
+                                    <th className='bg-primary text-base-100'></th>
+                                    <th className='bg-primary text-base-100'>Name</th>
+                                    <th className='bg-primary text-base-100'>Email</th>
+                                    <th className='bg-primary text-base-100'>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>

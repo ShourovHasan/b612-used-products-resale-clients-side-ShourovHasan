@@ -10,16 +10,18 @@ module.exports = {
           accent: "#A2A5BE",
           neutral: "#000000",
           'base-100': "#FFFFFF",
+          "base-300": "#000000",
         },
       },
       {
         dark: {
-          primary: '#4a7887',
+          primary: '#1ecbff',
           secondary: "#1F2937", //black
           accent: "#1F2937",
           neutral: "#ffffff", //text-white
           "base-100": "#1F2937", //bg-black
           "base-200": "#1F2937", //for btn
+          "base-300": "#64ffda",
         },
       },
     ],

@@ -5,7 +5,7 @@ import lottieHome from '../../../asssets/resale_mobile_Store.json';
 const WelcomeHome = () => {
     return (
         <div>
-            <div className="mb-20 hero">
+            <div className="my-5 hero">
                 <div className="flex-col-reverse hero-content lg:flex-row-reverse">
                     <div className='w-2/3 lg:w-1/2'>
                         <Lottie loop={true} animationData={lottieHome} />

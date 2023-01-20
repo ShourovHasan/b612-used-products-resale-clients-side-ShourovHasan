@@ -67,8 +67,8 @@ const ProductsCard = ({ product, setBooking }) => {
 
     return (
         <>
-        {
-            // (product.booking !== 'paid' && product.booking !== 'booked') &&
+            {
+                // (product.booking !== 'paid' && product.booking !== 'booked') &&
                 (product.booking !== 'paid') &&
                 <div className="neumorphism_Banner_Card card bg-base-100 shadow-neutral">
                     <figure><img src={productPicture} className='w-full h-[250px]' alt="Shoes" /></figure>

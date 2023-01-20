@@ -64,7 +64,7 @@ const Banner = () => {
                     productsPic.map(product =>
                         <div key={product._id} className="mb-5 card">
                             <div className='w-11/12 mx-auto my-5 neumorphism_Banner_Card card-body lg:h-[416px] md:h-[400px] h-[360] p-2'>
-                                <img src={product.productPicture} alt="Resale Mobile Store" className='h-[320px]'/>
+                                <img src={product.productPicture} alt="Resale Mobile Store" className='h-[320px]' />
                                 <div className="flex py-0 card-body">
                                     <h2 className="justify-center my-auto card-title">{product.productName}</h2>
                                 </div>

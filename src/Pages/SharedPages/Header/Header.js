@@ -19,10 +19,10 @@ const Header = () => {
     const menuItems = <React.Fragment>
         <li><NavLink className='rounded-xl' to='/'>Home</NavLink></li>
         <li><NavLink className='rounded-xl' to='/blog'>Blog</NavLink></li>
+        <li><NavLink className='rounded-xl' to='/dashboard'>Dashboard</NavLink></li>
         {
             user?.uid ?
                 <>
-                    <li><NavLink className='rounded-xl' to='/dashboard'>Dashboard</NavLink></li>
                     <li><button onClick={handleLogOut} className='rounded-xl'>Sign Out</button></li>
                 </>
                 :

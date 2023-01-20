@@ -8,7 +8,10 @@ const Main = () => {
         <div>
             <Header></Header>
             <Outlet></Outlet>
-            <Footer></Footer>
+            <div className='border rounded shadow-sm shadow-primary border-primary border-x-0'>
+            {/* <div className='rounded shadow-sm shadow-primary'> */}
+                <Footer></Footer>
+            </div>
         </div>
     );
 };

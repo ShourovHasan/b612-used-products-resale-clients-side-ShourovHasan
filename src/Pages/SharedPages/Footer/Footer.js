@@ -20,8 +20,8 @@ const Footer = () => {
     // console.log("categories", categories);
     if (!categories) return null;
     return (
-        <div className='p-5 py-5 text-white bg-black lg:p-10'>
-            <footer className="justify-around footer xs:w-full sm:w-full">
+        <div className='p-5 py-5 mx-auto lg:p-10'>
+            <footer className="justify-around mx-auto footer xs:w-full sm:w-full">
                 <div>
                     <span className="footer-title">Categories</span>
                     {

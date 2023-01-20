@@ -57,12 +57,12 @@ const ReportedItems = () => {
                             {/* <!-- head --> */}
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th>Image</th>
-                                    <th>Name</th>
-                                    <th>Reporter Email</th>
-                                    <th>Seller Email</th>
-                                    <th>Delete</th>
+                                    <th className='bg-primary text-base-100'></th>
+                                    <th className='bg-primary text-base-100'>Image</th>
+                                    <th className='bg-primary text-base-100'>Name</th>
+                                    <th className='bg-primary text-base-100'>Reporter Email</th>
+                                    <th className='bg-primary text-base-100'>Seller Email</th>
+                                    <th className='bg-primary text-base-100'>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>

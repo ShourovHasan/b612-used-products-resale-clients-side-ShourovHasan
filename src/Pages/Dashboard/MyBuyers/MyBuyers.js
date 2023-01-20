@@ -35,12 +35,12 @@ const MyBuyers = () => {
                             {/* <!-- head --> */}
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th>Product Name</th>
-                                    <th>Buyer Name</th>
-                                    <th>Price</th>
-                                    <th>Buyer Phone</th>
-                                    <th>Location</th>
+                                    <th className='bg-primary text-base-100'></th>
+                                    <th className='bg-primary text-base-100'>Product Name</th>
+                                    <th className='bg-primary text-base-100'>Buyer Name</th>
+                                    <th className='bg-primary text-base-100'>Price</th>
+                                    <th className='bg-primary text-base-100'>Buyer Phone</th>
+                                    <th className='bg-primary text-base-100'>Location</th>
                                 </tr>
                             </thead>
                             <tbody>
