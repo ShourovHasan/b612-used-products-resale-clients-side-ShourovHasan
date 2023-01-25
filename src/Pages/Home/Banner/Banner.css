@@ -1,6 +1,51 @@
 .neumorphism_Banner_Card{
     border-radius: 20px;
-    /* background: linear-gradient(145deg, #e6e6e6, #ffffff); */
-    box-shadow: 4px 4px 8px #666666,
-        -4px -4px 8px #ffffff;
+    box-shadow:
+        2px 2px 5px 0 rgba(0, 0, 0, 0.14),
+        0 1px 5px 0 rgba(0, 0, 0, 0.12),
+        0 3px 1px -2px #ffffff,
+        0 3px 1px +1px #ffffff;
+    transition: all 0.2s ease-in-out;
 }
+.neumorphism_Banner_Card:hover{
+    transform: scale(1.1);
+    border: 2px solid rgb(180, 180, 180);
+}
+.zoom_content:hover{
+    transform: scale(1.3);
+    transition: all 0.2s ease-in-out;
+}
+.zoom_content2:hover{
+    transform: scale(1.1);
+    transition: all 0.2s ease-in-out;
+    color: orange;
+}
+.zoom_content3:hover{
+    transform: scale(1.1);
+    transition: all 0.2s ease-in-out;
+}
+/* .style-1 {
+    /* del { */
+        /* color: rgba(red, 0.5); */
+        /* text-decoration: none;
+        position: relative; */
+    /* } */
+    /* del:before {
+        content: " ";
+        display: block;
+        width: 100%;
+        border-top: 2px solid rgba(red, 0.8);
+        height: 12px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transform: rotate(-7deg);
+    }
+
+    ins {
+        color: green;
+        font-size: 32px;
+        text-decoration: none;
+        padding: 1em 1em 1em .5em;
+    }
+} */ 

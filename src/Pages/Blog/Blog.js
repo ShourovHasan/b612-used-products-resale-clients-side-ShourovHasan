@@ -1,84 +1,96 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthProvider';
 import useTitle from '../../hooks/useTitle';
 import Loading from '../SharedPages/Loading/Loading';
+import AddBlog from './AddBlog';
+import './Blog.css';
+import { FaArrowRight } from "react-icons/fa";
+import { useState } from 'react';
 
 const Blog = () => {
-    const { loading } = useContext(AuthContext);
     useTitle('Blog');
-    if (loading) {
+    const [blogModal, setBlogModal] = useState(null);
+    
+    const { data: blogs, isLoading, refetch } = useQuery({
+        queryKey: ['blogs'],
+        queryFn: async () => {
+            const res = await fetch('https://b612-used-products-resale-server-side-shourovhasan.vercel.app/blogs')
+            const data = await res.json();
+            return data;
+        }
+    })
+    
+    if (isLoading) {
         return <Loading></Loading>
     }
     return (
-        <div className='my-12'>
-            <h2 className='mb-10 text-2xl font-bold text-center lg:text-5xl md:text-4xl text-primary divider'>Frequently Asked Questions</h2>
-            <div className='grid grid-cols-1 gap-4 lg:grid-cols-2'>
-                <div className="neumorphism_Banner_Card card bg-base-100 ">
-                    <div className="card-body">
-                        <h2 className="card-title">What are the different ways to manage a state in a React application?</h2>
-                        <p>There are several ways to manage state in a React application:</p>
-                        <ul className='ml-6 list-disc list-outside marker:text-green'>
-                            <li>
-                                Use a state management library like Redux or MobX. These libraries provide a way to manage state in a central place, making it easier to reason about your application.
-                            </li>
-                            <li>
-                                Use React's built-in state management features. React provides a way to manage state within components using the setState() method.
-                            </li>
-                            <li>
-                                Use a combination of both state management libraries and React's built-in state management features. This allows you to take advantage of the benefits of both approaches.
-                            </li>
-                        </ul>
-                    </div>
+        <div className="flex flex-col items-center">
+        <h2 className='mb-10 text-2xl font-bold text-center lg:text-5xl md:text-4xl text-primary divider'>Add Blog</h2>
+        <AddBlog
+            refetch={refetch}
+        ></AddBlog>
+        <h2 className='mb-10 text-2xl font-bold text-center lg:text-5xl md:text-4xl text-primary divider'>Our Blogs</h2>
+        <main className="w-full">
+            <section className="p-4">
+                <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+                    {
+                        blogs.map(blog => 
+                            <div key={blog._id} className="border-2 neumorphism-card">
+                                <div className="flex items-center justify-start p-4">
+                                    <div className="text-gray-700">
+                                        <p className="text-xl font-medium">{blog?.userName}</p>
+                                        <p className="text-xs">{blog?.blogTime}</p>
+                                    </div>
+                                </div>
+                                <div className="w-full h-48 bg-gray-300">
+                                    <img src={blog?.blogPicture} alt="Post" className="object-cover w-full h-full" />
+                                </div>
+                                <div className="p-4">
+                                    <h3 className="text-xl font-medium">{blog?.blogTitle}</h3>
+                                    <p className="mt-5 text-justify text-neutral">
+                                        {
+                                            (blog?.blogDescription).length > 150 ?
+                                                <>{(blog?.blogDescription).slice(0, 150) + '... see more'}</>
+                                                :
+                                                <>{(blog?.blogDescription)}</>
+                                        }
+                                    </p>
+                                </div>
+                                <label onClick={() => setBlogModal(blog)} htmlFor="modal" className="flex justify-end mt-0 mb-3 mr-8">
+                                    <p className='text-xl text-orange-500 zoom_content'>
+                                        <FaArrowRight></FaArrowRight>
+                                    </p>
+                                </label>                                    
+                            </div>
+                        )
+                    }
                 </div>
-                <div className="shadow-xl card bg-base-100 shadow-neutral">
-                    <div className="card-body">
-                        <h2 className="card-title">How does prototypical inheritance work?</h2>
-                        <ul className='ml-6 list-disc list-outside marker:text-green'>
-                            <li>
-                                In prototypical inheritance, each object has a prototype property, which references another object. When trying to access a property on an object, if that property does not exist, JavaScript will check the prototype property of that object to see if the property exists on the prototype object. If it does, it will return the value of that property. If the property does not exist on the prototype object, it will continue to check the prototype property of the prototype object, and so on, until it either finds the property or reaches the end of the prototype chain.
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div className="shadow-xl card bg-base-100 shadow-neutral">
-                    <div className="card-body">
-                        <h2 className="card-title">What is a unit test? Why should we write unit tests?</h2>
-                        <ul className='ml-6 list-disc list-outside marker:text-green'>
-                            <li>
-                                A unit test is a piece of code that tests a single functionality of your program. It is usually written by the developers themselves as they are building the program, to make sure that the functionality they are working on is working correctly. <br />
-                                Unit tests are important because they ensure that individual pieces of code are functioning as expected. This is especially important as code is being added or changed, as it can help to identify issues early on. Additionally, unit tests can be run automatically and repeatedly, which can save time and help to find issues that might otherwise be missed.
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div className="shadow-xl card bg-base-100 shadow-neutral">
-                    <div className="card-body">
-                        <h2 className="card-title">React vs. Angular vs. Vue?</h2>
-                        <ul className='ml-6 list-disc list-outside marker:text-green'>
-                            <li>
-                                React is a JavaScript library for building user interfaces, while Angular and Vue are JavaScript frameworks.
-                            </li>
-                            <li>
-                                React is used by Facebook and Instagram, Angular is used by Google, and Vue is used by Alibaba.
-                            </li>
-                            <li>
-                                React has a smaller community, while Angular and Vue have larger communities.
-                            </li>
-                            <li>
-                                React is easier to learn, while Angular and Vue are more difficult to learn.
-                            </li>
-                            <li>
-                                React is more flexible, while Angular and Vue are more opinionated.
-                            </li>
-                            <li>
-                                React is faster, while Angular and Vue are slower.
-                            </li>
-                        </ul>
+            <input type="checkbox" id="modal" className="modal-toggle" />
+            <div className="modal">
+                <div className="relative modal-box">
+                    <label htmlFor="modal" className="absolute text-2xl text-orange-600 btn btn-sm btn-circle right-2 top-2">✕</label>
+                    <div className="w-full border-2 rounded-lg">
+                        <div className="flex items-center justify-start p-4">
+                            <div className="text-gray-700">
+                                <p className="text-xl font-medium">{blogModal?.userName}</p>
+                                <p className="text-xs">{blogModal?.blogTime}</p>
+                            </div>
+                        </div>
+                        <div className="w-full h-48 bg-gray-300">
+                            <img src={blogModal?.blogPicture} alt="Post" className="object-cover w-full h-full" />
+                        </div>
+                        <div className="p-2 pt-4">
+                            <h3 className="text-xl font-medium">{blogModal?.blogTitle}</h3>
+                            <p className="mt-5 text-justify text-neutral">
+                                {blogModal?.blogDescription}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+        </main>
+    </div >        
     );
 };
 

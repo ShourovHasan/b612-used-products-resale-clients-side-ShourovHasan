@@ -29,7 +29,7 @@ const RecentlyAddedProducts = () => {
             {
                 products.length > 0 &&
                 <>
-                    <h2 className='text-xl font-bold text-center lg:text-4xl divider text-primary md:text-3xl'>Recently Added Products</h2>
+                    <h2 className='text-lg font-bold text-center lg:text-4xl divider text-primary md:text-3xl'>Recently Added Products</h2>
                     <div className='grid grid-cols-1 gap-4 mx-2 mt-10 mb-20 lg:grid-cols-3 md:grid-cols-2 lg:gap-8 md:gap-6 lg:mx-4 md:mx-2'>
                         {
                             products.map(product => <ProductsCard

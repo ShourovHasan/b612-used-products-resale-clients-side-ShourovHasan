@@ -61,13 +61,13 @@ const Feedbacks = () => {
             {
                 feedbacks.length ?
                     <div className='mt-10 mb-20'>
-                        <h2 className='text-5xl font-bold text-center divider text-primary divider-primary'>Feedbacks</h2>
+                        <h2 className='text-lg font-bold text-center lg:text-5xl divider text-primary divider-primary md:text-4xl'>Feedbacks</h2>
                         <div className='w-11/12 mx-auto my-10'>
                             <Slider {...settings}>
                                 {
                                     feedbacks.map(feedback =>
                                         <div key={feedback._id} className="mb-5 card">
-                                            <div className='w-11/12 mx-auto my-5 neumorphism_Banner_Card card-body min-h-[280px] p-2'>
+                                            <div className='w-11/12 mx-auto my-5 neumorphism-card card-body min-h-[280px] p-2'>
                                                 {/* <p></p> */}
                                                 <div className='mt-3 ml-5'>
                                                     <h2 className="text-2xl card-title">
@@ -75,7 +75,7 @@ const Feedbacks = () => {
                                                     </h2>
                                                     <small><p>{feedback.feedbackTime}</p></small>
                                                 </div>
-                                                <div className="flex py-0 card-body">
+                                                <div className="flex py-0 pt-5 card-body">
                                                     <h2 className="justify-center my-auto card-title">{feedback.feedbackDescription}</h2>
                                                 </div>
                                             </div>

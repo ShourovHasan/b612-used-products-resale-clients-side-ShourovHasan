@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import { TbCurrencyTaka } from 'react-icons/tb';
+import { HiLocationMarker } from 'react-icons/hi';
 
 const ProductsCard = ({ product, setBooking }) => {
-    const { productName, productPicture, publishedTime, purchaseYear, productCondition, productDescription, resalePrice, sellerLocation, sellerName, sellerPhoneNumber, useOfYears, sellerEmail, originalPrice } = product;
+    const { productName, productPicture, publishedTime, resalePrice, sellerLocation, sellerEmail, originalPrice } = product;
     const { user } = useContext(AuthContext);
     const [seller, setSeller] = useState([]);
     // const [payment, setPayment] = useState([]);
@@ -71,10 +73,38 @@ const ProductsCard = ({ product, setBooking }) => {
                 // (product.booking !== 'paid' && product.booking !== 'booked') &&
                 (product.booking !== 'paid') &&
                 <div className="neumorphism_Banner_Card card bg-base-100 shadow-neutral">
-                    <figure><img src={productPicture} className='w-full h-[250px]' alt="Shoes" /></figure>
+                    <figure><img src={productPicture} className='w-full h-[300px]' alt="Shoes" /></figure>
                     <div className="p-0 mx-4 my-3 card-body">
-                        <p className='p-0 m-0 font-semibold text-center'>{productName}</p>
-                        <p className='text-justify'>{productDescription}</p>
+                            <p className='p-0 m-0 text-start'> <span className='font-semibold'>{productName}
+                                <small>( {
+                                    seller?.verifySeller !== 'verified' ?
+                                        <span className='text-red-500'> Not Verified Seller</span>
+                                        :
+                                        <span className=''><input type="checkbox" defaultChecked className="w-3 h-3 checkbox checkbox-info" /> Verified Seller</span>
+                                } )</small>
+                            </span> <br />
+                                <small>{publishedTime}</small>
+                            </p>
+                            <div className='flex justify-between my-1'>
+                                <div class="style-1 flex">
+                                    <span>
+                                        <span class="amount flex items-center text-lg">
+                                            <TbCurrencyTaka></TbCurrencyTaka>{resalePrice}</span>
+                                    </span>
+                                    <del className='ml-3 text-red-500'>
+                                        <span class="amount text-red-500 flex items-center"> <TbCurrencyTaka></TbCurrencyTaka> {originalPrice}</span>
+                                    </del>
+                                </div>
+                                <div className='flex items-center'>
+                                    <span className='mr-1 text-red-500'>
+                                        <HiLocationMarker></HiLocationMarker>
+                                    </span>
+                                    <span>{sellerLocation}</span>
+                                </div>
+                            </div>
+                            
+                            
+                        {/* <p className='text-justify'>{productDescription}</p>
                         <ul className=''>
                             <li className='text-bold'>Product Details
                                 <ul className='ml-6 list-disc list-outside marker:text-green'>
@@ -100,13 +130,13 @@ const ProductsCard = ({ product, setBooking }) => {
                                     <li><small>Phone: {sellerPhoneNumber}</small></li>
                                 </ul>
                             </li>
-                        </ul>
-                        <div className="justify-center card-actions">
-                            <button onClick={() => handleReport(product)} className="text-white border-none shadow-sm shadow-neutral btn bg-gradient-to-r from-secondary to-primary btn-sm">Report to Admin</button>
+                        </ul> */}
+                        <div className="justify-between card-actions">
+                                <button onClick={() => handleReport(product)} className="text-white border-none shadow-sm shadow-neutral btn bg-gradient-to-r from-secondary to-primary btn-sm zoom_content">Report</button>
+                                <label onClick={() => setBooking(product)} htmlFor="booking-modal" className="text-white border-none shadow-sm shadow-neutral btn btn-sm bg-gradient-to-r from-secondary to-primary zoom_content">Book Now</label>
                         </div>
-                        <div className="justify-center card-actions">
-                            <label onClick={() => setBooking(product)} htmlFor="booking-modal" className="w-full text-white border-none shadow-sm shadow-neutral btn bg-gradient-to-r from-secondary to-primary">Book Now</label>
-                        </div>
+                        {/* <div className="justify-center card-actions">
+                        </div> */}
                     </div>
                 </div>
             }

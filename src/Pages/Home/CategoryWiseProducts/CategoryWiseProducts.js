@@ -18,15 +18,15 @@ const CategoryWiseProducts = () => {
     }
     return (
         <div className='my-12'>
-            <h2 className='text-xl font-bold text-center lg:text-4xl divider text-primary md:text-3xl'>Second Hand Products Categories</h2>
-            <div className='flex justify-center gap-2 navbar'>
+            <h2 className='text-lg font-bold text-center lg:text-4xl divider text-primary md:text-3xl'>Products Categories</h2>
+            <div className='flex justify-center gap-2 navbar '>
                 <ul className="p-0 menu menu-horizontal">
                     {
                         categories.map(category =>
                             <li
                                 // onClick={() => handleProducts(category)}
                                 key={category._id}
-                                className='mx-1 mb-3 border-2 rounded-lg'
+                                className='mx-1 mb-3 border-2 rounded-lg zoom_content2'
                             >
                                 <Link to={`/category/${category._id}`} className='h-10 p-0 m-0 '>
                                     <img src={category.categoryPicture} className='w-10 h-10' alt="" />

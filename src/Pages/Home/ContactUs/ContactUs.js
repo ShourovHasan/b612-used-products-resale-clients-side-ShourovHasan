@@ -3,6 +3,7 @@ import { toast } from 'react-hot-toast';
 import emailjs from '@emailjs/browser';
 import { FaFacebookF, FaGithub, FaLinkedinIn } from 'react-icons/fa';
 import netlify from '../../../asssets/Social/netlify.png'
+import './ContactUs.css';
 
 const ContactUs = () => {
     const form = useRef();
@@ -25,25 +26,25 @@ const ContactUs = () => {
     
     return (
         <div className="mt-5 mb-10">
-            <h2 className='text-5xl font-bold text-center divider text-primary divider-primary'>Contact US</h2>
+            <h2 className='text-lg font-bold text-center lg:text-5xl divider text-primary divider-primary md:text-4xl'>Contact US</h2>
             <div className='mt-8 hero'>
                 <div className='flex-col hero-content lg:flex-row'>
                     <div className='w-full mx-auto card lg:w-1/2'>
                         <div className="flex flex-col p-5 mx-auto text-xl card-body">
-                            <h2 className='mt-5 text-4xl font-bold mb-7 text-primary'>Get in touch</h2>
-                            <div className='w-2/3 lg:w-full'>
+                            <h2 className='text-lg font-bold lg:mt-5 lg:text-4xl lg:mb-7 text-primary md:text-3xl'>Get in touch</h2>
+                            <div className='w-2/3 lg:w-full text_Customize'>
                                 <p>For any reports or queries comes, we are always open to solve this. Contact us at any time!</p>
                             </div>
                             <div className="flex">
                                 <div className="font-bold ">
-                                    <p>Phone:</p>
-                                    <p>Email:</p>
-                                    <p>Address:</p>
+                                    <p className='text_Customize'>Phone:</p>
+                                    <p className='text_Customize'>Email:</p>
+                                    <p className='text_Customize'>Address: </p>
                                 </div>
                                 <div className="ml-1">
-                                    <p>+8801786558637</p>
-                                    <p>shourovhasan91@gmail.com</p>
-                                    <p>Dhaka, Bangladesh</p>
+                                    <p className='text_Customize2'>+8801786558637</p>
+                                    <p className='text_Customize2'>shourovhasan91@gmail.com</p>
+                                    <p className='text_Customize2'>Dhaka, Bangladesh</p>
                                 </div>
                             </div>
                             <h3 className='mt-5 text-3xl'>Social Media</h3>
@@ -58,7 +59,7 @@ const ContactUs = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='flex justify-center w-11/12 shadow-sm lg:w-1/2 shadow-primary rounded-xl'>
+                    <div className='flex justify-center shadow-sm w-fit lg:w-1/2 shadow-primary rounded-xl zoom_content3'>
                         <form ref={form} onSubmit={sendEmail} className='flex flex-col mx-auto card-body'>
                             <div className="form-control">
                                 <label className="label">

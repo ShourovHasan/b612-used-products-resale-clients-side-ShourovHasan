@@ -1,15 +1,29 @@
 import { format } from 'date-fns';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const BookingModal = ({ booking, setBooking, refetch }) => {
     const { user } = useContext(AuthContext);
-    const { _id, productName, productPicture, resalePrice, sellerName, sellerPhoneNumber, sellerEmail } = booking;
+    const { _id, productName, sellerLocation, sellerName, sellerPhoneNumber, productPicture, publishedTime, purchaseYear, productCondition, productDescription, resalePrice, useOfYears, sellerEmail, originalPrice } = booking;
+    
+    const [seller, setSeller] = useState([]);
     const date = format(new Date(), "PPpp");
     const navigate = useNavigate();
     // console.log('booking',booking.booking);
+
+
+    useEffect(() => {
+        if (sellerEmail) {
+            fetch(`https://b612-used-products-resale-server-side-shourovhasan.vercel.app/users/sellerVerify/${sellerEmail}`)
+                .then(res => res.json())
+                .then(data => {
+                    setSeller(data);
+                });
+        }
+    }, [sellerEmail])
+    
     const handleBooking = event => {
         event.preventDefault();
 
@@ -67,6 +81,34 @@ const BookingModal = ({ booking, setBooking, refetch }) => {
                 <div className="relative modal-box">
                     <label htmlFor="booking-modal" className="absolute btn btn-sm btn-circle right-2 top-2">✕</label>
                     <h3 className="text-lg font-bold text-center text-neutral">{productName}</h3>
+                    <p className='text-justify'>{productDescription}</p>
+                    <ul className=''>
+                        <li className='text-bold'>Product Details
+                            <ul className='ml-6 list-disc list-outside marker:text-green'>
+                                <li><small>Original Price: {originalPrice} tk</small></li>
+                                <li><small>Resale Price: {resalePrice} tk</small></li>
+                                <li><small>Product Condition: {productCondition}</small></li>
+                                <li><small>Years of Use: {useOfYears} years</small></li>
+                                <li><small>Purchase Year: {purchaseYear}</small></li>
+                                <li><small>Published: {publishedTime}</small></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul className=''>
+                        <li className='text-bold'>Seller Info
+                            <ul className='ml-6 list-disc list-outside marker:text-green'>
+                                <li><small>Seller name: {sellerName} ( {
+                                    seller?.verifySeller !== 'verified' ?
+                                        <span className='text-red-500'> Not Verified Seller</span>
+                                        :
+                                        <span className=''><input type="checkbox" defaultChecked className="w-3 h-3 checkbox checkbox-info" /> Verified Seller</span>
+                                } )</small></li>
+                                <li><small>Location: {sellerLocation}</small></li>
+                                <li><small>Phone: {sellerPhoneNumber}</small></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
                     <form onSubmit={handleBooking} className='grid flex-col grid-cols-1 gap-3 mt-3'>
                         <input type="text" className="w-full shadow-sm input input-bordered shadow-neutral" defaultValue={resalePrice} disabled />
 

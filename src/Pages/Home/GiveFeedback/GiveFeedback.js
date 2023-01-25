@@ -1,11 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
-import Loading from '../../SharedPages/Loading/Loading';
 import Lottie from "lottie-react";
 import postImg from '../../../asssets/post.json';
 
@@ -43,7 +41,7 @@ const GiveFeedback = () => {
     }
     return (
         <div className='my-16'>
-            <h2 className='text-5xl font-bold text-center divider text-primary divider-primary'>Give Feedback</h2>
+            <h2 className='text-lg font-bold text-center lg:text-5xl divider text-primary divider-primary md:text-4xl'>Give Feedback</h2>
             <div className="mx-auto hero ">
                 <div className="flex-col gap-20 mx-auto hero-content lg:flex-row md:flex-row">
                     <div className="w-11/12 text-center lg:w-1/3 lg:text-left md:w-1/3">
